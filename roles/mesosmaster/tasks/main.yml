@@ -1,0 +1,10 @@
+- name: setting cluster name
+  shell: echo {{cluster_name}} > /etc/mesos-master/cluster
+
+- name: disable mesos-slave service
+  service: name=mesos-slave enabled=no state=stopped
+
+- name: starting mesos master
+  service: name=mesos-master state=started
+
+

@@ -1,0 +1,20 @@
+
+- name: run vamp on host vampa
+  docker:
+    name: vamp
+    image: magneticio/vamp:latest
+    pull: always
+    state: reloaded
+    count: 1
+    ports:
+      - 81:80
+      - 8081:8080
+      - 10002:10001
+      - 8084:8083
+    env:
+      VAMP_MARATHON_URL: 'http://{{hostvars.vampa.ansible_fqdn}}:8080' 
+      VAMP_ROUTER_URL: 'http://{{hostvars.vampe.ansible_fqdn}}:10001'
+      VAMP_ROUTER_HOST: '{{hostvars.vampe.ansible_fqdn}}'
+
+
+

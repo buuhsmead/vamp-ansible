@@ -1,0 +1,27 @@
+= vamp-ansible
+For Vamp (http://vamp.io/) a multimachine ansible script.
+
+== Topology
+I am lucky to have a vmware datacentre with rhel7 virtual machines available to me.
+And I wanted to share my personal ansible script with you to install:
+
+. zookeeper
+. mesos
+. marathon
+. docker
+. *vamp*
+
+This ansible playbook installs on each host a docker daemon.
+Also on each host a mesos install
+On one host the marathon schedular
+And on the other four hosts a mesos slave.
+For Vamp I use one machine directly the docker daemon to install vamp-router.
+And on the marathon host I install directly onto docker the 'Vamp' v0.7.5. 
+
+
+It is tailored to the datacentre I am using. So please look at all the files
+and adjust it to your needs. It is almost the same as I use but I had to
+change the inventory file with different IP's.
+
+Have fun with it and let me know what you think of it.
+

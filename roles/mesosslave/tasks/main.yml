@@ -1,0 +1,13 @@
+- name: place containerizers config
+  copy: src=containerizers dest=/etc/mesos-slave/containerizers
+
+- name: place executor config
+  copy: src=executor_registration_timeout dest=/etc/mesos-slave/executor_registration_timeout
+
+- name: disable mesos master service
+  service: name=mesos-master enabled=false state=stopped
+
+- name: start mesos slave service
+  service: name=mesos-slave state=restarted
+
+

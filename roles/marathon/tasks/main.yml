@@ -1,0 +1,25 @@
+- name: add marathon repo
+  yum: name=http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm state=present
+
+- name: add openjdk 1.7 as java dependency
+  yum: name=java-1.7.0-openjdk-devel.x86_64 state=latest
+
+- name: install marathon
+  yum: name=marathon state=latest
+
+- name: create config directory
+  file: path=/etc/marathon/conf recurse=yes state=directory
+
+- name: generate zk config
+  template: src=zk.j2 dest=/tmp/zk
+
+- name: sanitize zk config for mesos usage
+  shell: tr -d '\n' < /tmp/zk | awk '{printf "zk://%s/mesos",  substr($0, 1, length($0)-1)}' > /etc/marathon/conf/master
+
+- name: sanitize zk config for marathon usage
+  shell: tr -d '\n' < /tmp/zk | awk '{printf "zk://%s/marathon",  substr($0, 1, length($0)-1)}' > /etc/marathon/conf/zk
+
+- name: start marathon server
+  service: name=marathon state=started
+
+

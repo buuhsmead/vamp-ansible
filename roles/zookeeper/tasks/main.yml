@@ -1,0 +1,16 @@
+- name: install zookeeper for marathon
+  yum: name=mesosphere-zookeeper.x86_64 state=latest
+
+- name: create/adjust zookeeper config
+  template: src=zoo.cfg.j2 dest=/etc/zookeeper/conf/zoo.cfg owner=root group=root mode="u=rw,g=r,o=r" backup=yes
+
+- name: place the myid on each zookeeper host
+  template: src=myid.j2 dest=/tmp/myid 
+
+- name: cleanup generated zookeeper myid 
+  shell: cat /tmp/myid | grep [0-9] > /var/lib/zookeeper/myid
+
+- name: start zookeeper service
+  service: name=zookeeper state=restarted
+
+

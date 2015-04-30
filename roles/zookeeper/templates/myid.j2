@@ -1,0 +1,6 @@
+{% for host in groups['zookeeper']|sort %}
+{% if hostvars[host]["ansible_ssh_host"] == ansible_fqdn %}
+{{loop.index}}
+{% endif %}
+{% endfor %}
+

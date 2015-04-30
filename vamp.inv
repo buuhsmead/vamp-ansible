@@ -1,0 +1,42 @@
+# VAMP Cluster
+
+vampa        ansible_ssh_host=10.10.10.158
+vampe        ansible_ssh_host=10.10.10.162
+
+zka          ansible_ssh_host=10.10.10.158
+zkb          ansible_ssh_host=10.10.10.159
+zkc          ansible_ssh_host=10.10.10.160
+zkd          ansible_ssh_host=10.10.10.161
+zke          ansible_ssh_host=10.10.10.162
+
+mesosa       ansible_ssh_host=10.10.10.158
+mesosb       ansible_ssh_host=10.10.10.159
+mesosc       ansible_ssh_host=10.10.10.160
+mesosd       ansible_ssh_host=10.10.10.161
+mesose       ansible_ssh_host=10.10.10.162
+
+[all:vars]
+STAGE=VAMP
+
+[zookeeper]
+zka
+zkb
+zkc
+zkd
+zke
+
+[mesosmaster]
+mesosa
+
+[mesosslave]
+mesosb
+mesosc
+mesosd
+mesose
+
+[vamprouter]
+vampe
+
+[vampmaster]
+vampa
+

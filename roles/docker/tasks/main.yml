@@ -1,0 +1,22 @@
+- name: create 5G metadata lv named dckmeta
+  lvol: vg=vg00 lv=dckmeta size=5G
+
+- name: create 40G data lv named dckdata
+  lvol: vg=vg00 lv=dckdata size=40G
+
+- name: install docker
+  yum: name=docker state=latest
+
+- name: place lvl docker config storage
+  copy: src=docker-storage dest=/etc/sysconfig/docker-storage
+
+- name: add dockerhub.novamedia.com as insecure repository
+  lineinfile: dest=/etc/sysconfig/docker line="INSECURE_REGISTRY='--insecure-registry dockerhub.novamedia.com'"
+
+- name: install docker-python module
+  yum: name=docker-python state=latest
+
+- name: starting docker service
+  service: name=docker state=restarted enabled=true
+
+

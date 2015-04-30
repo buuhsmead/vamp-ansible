@@ -1,0 +1,15 @@
+
+- name: start docker image vamp-router
+  docker:
+    name: vamprouter
+    image: magneticio/vamp-router:latest
+    pull: always
+    state: reloaded
+    memory_limit: "512MB"
+    count: 1
+    detach: true
+    ports:
+      - 80:80
+      - 1988:1988
+      - 10001:10001
+

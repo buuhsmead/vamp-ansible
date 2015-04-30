@@ -1,0 +1,32 @@
+
+- hosts: zookeeper
+  sudo: true
+  roles:
+    - zookeeper
+
+- hosts: mesosmaster
+  sudo: true
+  roles:
+    - docker
+    - mesos
+    - mesosmaster
+    - marathon
+
+- hosts: mesosslave
+  sudo: true
+  roles:
+    - docker
+    - mesos
+    - mesosslave
+
+- hosts: vamprouter
+  sudo: true
+  roles:
+    - vamprouter
+
+- hosts: vampmaster
+  sudo: true
+  roles:
+    - vampmaster
+
+

@@ -1,0 +1,2 @@
+DOCKER_STORAGE_OPTIONS = --storage-opt dm.metadatadev=/dev/vg00/dckmeta --storage-opt dm.datadev=/dev/vg00/dckdata
+
