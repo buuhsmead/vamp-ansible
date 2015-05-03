@@ -28,5 +28,3 @@
   sudo: true
   roles:
     - vampmaster
-
-

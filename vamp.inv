@@ -1,19 +1,19 @@
 # VAMP Cluster
 
-vampa        ansible_ssh_host=10.10.10.158
-vampe        ansible_ssh_host=10.10.10.162
+vampa        ansible_ssh_host=vampa-dv
+vampe        ansible_ssh_host=vampe-dv
 
-zka          ansible_ssh_host=10.10.10.158
-zkb          ansible_ssh_host=10.10.10.159
-zkc          ansible_ssh_host=10.10.10.160
-zkd          ansible_ssh_host=10.10.10.161
-zke          ansible_ssh_host=10.10.10.162
+zka          ansible_ssh_host=vampa-dv
+zkb          ansible_ssh_host=vampb-dv
+zkc          ansible_ssh_host=vampc-dv
+zkd          ansible_ssh_host=vampd-dv
+zke          ansible_ssh_host=vampe-dv
 
-mesosa       ansible_ssh_host=10.10.10.158
-mesosb       ansible_ssh_host=10.10.10.159
-mesosc       ansible_ssh_host=10.10.10.160
-mesosd       ansible_ssh_host=10.10.10.161
-mesose       ansible_ssh_host=10.10.10.162
+mesosa       ansible_ssh_host=vampa-dv
+mesosb       ansible_ssh_host=vampb-dv
+mesosc       ansible_ssh_host=vampc-dv
+mesosd       ansible_ssh_host=vampd-dv
+mesose       ansible_ssh_host=vampe-dv
 
 [all:vars]
 STAGE=VAMP
