@@ -11,6 +11,7 @@
     - mesos
     - mesosmaster
     - marathon
+    - mesosdns
 
 - hosts: mesosslave
   sudo: true

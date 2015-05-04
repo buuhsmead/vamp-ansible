@@ -1,0 +1,12 @@
+[Unit]
+Description=Mesos DNS service
+After=network.target
+
+[Service]
+ExecStart=/root/go/src/github.com/mesosphere/mesos-dns/mesos-dns -v=1 -config=/etc/mesos_dns.config
+Type=forking
+Restart=always
+
+[Install]
+WantedBy=default.target
+

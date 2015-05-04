@@ -1,0 +1,28 @@
+- name: install packages for mesos dns
+  yum: name={{item}} state=latest
+  with_items:
+  - golang
+  - git
+  - bind-utils
+
+- name: place 'build mesos dns' file
+  copy: src=build_mesos_dns dest=/var/tmp/build_mesos_dns mode="u=rwx"
+
+- name: build mesos dns
+  command: /var/tmp/build_mesos_dns
+
+- name: place adjusted resolve.conf
+  copy: src=resolve.conf dest=/etc/resolve.conf
+
+- name: stop the original named service
+  service: name=named state=stopped
+
+- name: generate mesos dns config file
+  template: src=config.json.j2 dest=/etc/mesos_dns.config
+
+- name: place a systemd unit file
+  template: src=mesosdns.service.j2 dest=/etc/systemd/system/mesosdns.service
+
+- name: enable and start mesos dns service
+  service: name=mesosdns state=started enabled=true
+

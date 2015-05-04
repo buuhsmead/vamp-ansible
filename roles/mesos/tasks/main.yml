@@ -2,8 +2,5 @@
   yum: name=mesos.x86_64 state=latest
 
 - name: generate zk config
-  template: src=zk.j2 dest=/tmp/zk
-
-- name: sanitize zk config
-  shell: tr -d '\n' < /tmp/zk | awk '{printf "zk://%s/mesos",  substr($0, 1, length($0)-1)}' > /etc/mesos/zk
+  template: src=zk.j2 dest=/etc/mesos/zk
 
