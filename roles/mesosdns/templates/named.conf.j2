@@ -1,0 +1,33 @@
+options {
+        listen-on port 53 { 127.0.0.1; };
+        directory       "/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        forwarders { 10.2.0.10; 10.2.0.11; };
+        allow-query     { localhost; };
+        allow-query-cache { localhost; };
+
+        managed-keys-directory "/var/named/dynamic";
+        pid-file "/run/named/named.pid";
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+view localhost_resolver {
+        match-clients      { localhost; };
+        match-destinations { localhost; };
+        recursion yes;
+        include "/etc/named.rfc1912.zones";
+
+	zone "marathon.mesos" {
+		type forward;
+		forwarders {127.0.0.1 port 54; };
+	};
+
+};
